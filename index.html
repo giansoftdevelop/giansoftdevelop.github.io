@@ -8,13 +8,27 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script>
     function copiarEnlace() {
       navigator.clipboard.writeText(window.location.href)
         .then(() => alert("¡Enlace copiado!"))
         .catch(() => alert("Error al copiar el enlace"));
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".card");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      cards.forEach(card => observer.observe(card));
+    });
   </script>
 </head>
 <body>
@@ -31,7 +45,6 @@
       </a>
     </div>
   </header>
-
   <main class="container">
     <section class="card app-hero">
       <div class="app-icon">
@@ -42,7 +55,6 @@
         <div class="app-developer">
           Giansoftdevelop <span class="chip">Acción</span>
         </div>
-
         <div class="app-meta">
           <div class="meta-item">
             <div class="meta-strong">+18</div>
@@ -53,38 +65,27 @@
             <div class="meta-caption">Compatibilidad</div>
           </div>
         </div>
-
         <div class="cta-row">
           <a class="btn primary" href="https://www.mediafire.com/file/5k4sp9qfefbs5xf/144PRecord[1].apk/file">Descargar</a>
           <button class="btn ghost" onclick="copiarEnlace()">Compartir</button>
         </div>
       </div>
     </section>
-
     <section class="card">
       <h2>Acerca de esta version</h2>
-      <p>
-        Esta es una version incompleta, creada unicamente para probar la optimización y el rendimiento, ademas de aspectos como la personalizacion de controles y graficos. El juego completo incluirá más características, misiones y contenido, recuerda que todo esto esta siendo desarrollado por mi, excepto algunos modelos 3D, los cuales en la version final incluiran los creditos de los artistas correspondientes.
-      </p>
+      <p>Esta es una version incompleta, creada unicamente para probar la optimización y el rendimiento, ademas de aspectos como la personalizacion de controles y graficos. El juego completo incluirá más características, misiones y contenido, recuerda que todo esto esta siendo desarrollado por mi, excepto algunos modelos 3D, los cuales en la version final incluiran los creditos de los artistas correspondientes.</p>
       <ul class="features">
         <li><strong>Personalizacion de controles:</strong> Ahora se pueden ajustar los controles a gusto en la pantalla, no olvides guardar la configuracion.</li>
         <li><strong>Personalizacion de Graficos:</strong> Ahora podras ajustar los graficos a tu gusto, hay algunas opciones experimentales como SSGI y el Blur (este ultimo para un efecto de camara antigua).</li>
         <li><strong>Gore:</strong> En esta version se da un paso para probar algunos aspectos como la sangre (he de mecionar que esta muy exagerado en esta version).</li>
       </ul>
     </section>
-
     <section class="card">
       <h2>Advertencia</h2>
       <ul class="changelog">
-         <li>
-            Esta versión puede presentar algunos bugs en los controles. Algunos modelos como las casas estan siendo modelados por mi persona y un amigo, el entorno no esta en su totalidad, por lo que hay algunos modelos incompletos. Los soldados enemigos no atacan: están allí únicamente para probar efectos de sangre.  
-            Sin embargo, esta build ofrece una imagen más clara del rendimiento que se espera en la próxima actualización, gracias a varias técnicas de optimización que ya han sido implementadas en dicha version.  
-            El personaje principal será reemplazado en la siguiente versión, y podrán esperar al menos una misión jugable como parte de ese nuevo contenido.
-        </li>
-
+        <li>Esta versión puede presentar algunos bugs en los controles. Algunos modelos como las casas estan siendo modelados por mi persona y un amigo, el entorno no esta en su totalidad, por lo que hay algunos modelos incompletos. Los soldados enemigos no atacan: están allí únicamente para probar efectos de sangre. Sin embargo, esta build ofrece una imagen más clara del rendimiento que se espera en la próxima actualización, gracias a varias técnicas de optimización que ya han sido implementadas en dicha version. El personaje principal será reemplazado en la siguiente versión, y podrán esperar al menos una misión jugable como parte de ese nuevo contenido.</li>
       </ul>
     </section>
-
     <section class="card">
       <h2>Ficha de la app</h2>
       <div class="spec-grid">
@@ -96,7 +97,6 @@
         <div><strong>Idiomas</strong><br>ES</div>
       </div>
     </section>
-
     <section class="card">
       <h2>Instalación y ayuda</h2>
       <ul class="faq">
@@ -105,7 +105,6 @@
       </ul>
     </section>
   </main>
-
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>Giansoftdevelop©</div>
@@ -119,4 +118,3 @@
   </footer>
 </body>
 </html>
-
